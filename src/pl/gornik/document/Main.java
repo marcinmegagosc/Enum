@@ -16,29 +16,48 @@ public class Main {
 
         for(Document Document: documentList) System.out.println(Document);
         System.out.println("------------------------------");
-        System.out.println("Tworzenie Dokumentu:");
-        System.out.println("Wprowadź nazwę dokumentu");
-        String name = scanner.nextLine();
-        System.out.println("Wprowadź ilość stron dokumentu");
-        int pageAmount = scanner.nextInt();
+        System.out.println("Tworzenie Dokumentu: 1. Poprzez nazwę, 2. Poprzez ID 0. Wyjście");
+        int dokument = scanner.nextInt();
         scanner.nextLine();
-        System.out.println("Podaj typ dokumentu. Podaj nazwe, lub numer id: 1. faktura, 2. kontrakt, 3. akt notarialny, 4. certyfikat");
-        System.out.println("Wprowadź nazwę");
-        String documentName = scanner.nextLine();
-        DocumentType docType = getDocument(documentName);
-        System.out.println("Wprowadź ID");
-        int documentId = scanner.nextInt();
-        DocumentType docID = getDocument(documentId);
-        if(docType != null){
-            documentList.add(new Document(name,pageAmount,docType));
-            System.out.println("Utworzono obiekt dokumentu poprzez nazwę");
-        }else System.out.println("Wprowadziłeś wartość z poza ENUM");
-        if(docID != null){
-            documentList.add(new Document(name,pageAmount,docID));
-            System.out.println("Utworzono obiekt dokumentu poprzez ID");
-        }else System.out.println("Wprowadziłeś wartość z poza ENUM");
-        for(Document Document: documentList) System.out.println(Document);
+        switch(dokument) {
 
+            case 1:
+                System.out.println("Tworzenie Dokumentu poprzez nazwę:");
+                System.out.println("Wprowadź nazwę dokumentu");
+                String name = scanner.nextLine();
+                System.out.println("Wprowadź ilość stron dokumentu");
+                int pageAmount = scanner.nextInt();
+                scanner.nextLine();
+                System.out.println("Podaj typ dokumentu (faktura,kontrakt,akt notarialny,certyfikat");
+                String documentName = scanner.nextLine();
+                DocumentType docType = getDocument(documentName);
+                if (docType != null) {
+                    documentList.add(new Document(name, pageAmount, docType));
+                    System.out.println("Utworzono obiekt dokumentu poprzez nazwę");
+                } else System.out.println("Wprowadziłeś wartość z poza ENUM");
+                for (Document Document : documentList) System.out.println(Document);
+                break;
+            case 2:
+                System.out.println("Tworzenie Dokumentu poprzez nazwę:");
+                System.out.println("Wprowadź nazwę dokumentu");
+                name = scanner.nextLine();
+                System.out.println("Wprowadź ilość stron dokumentu");
+                pageAmount = scanner.nextInt();
+                scanner.nextLine();
+                System.out.println("Podaj typ dokumentu (1.faktura,2.kontrakt,3.akt notarialny,4.certyfikat");
+                System.out.println("Wprowadź ID");
+                int documentId = scanner.nextInt();
+                DocumentType docID = getDocument(documentId);
+                if (docID != null) {
+                    documentList.add(new Document(name, pageAmount, docID));
+                    System.out.println("Utworzono obiekt dokumentu poprzez ID");
+                } else System.out.println("Wprowadziłeś wartość z poza ENUM");
+                for (Document Document : documentList) System.out.println(Document);
+                break;
+            case 0:
+                System.out.println("Koniec");
+                break;
+        }
     }
 
     public static DocumentType getDocument(String documentName){
