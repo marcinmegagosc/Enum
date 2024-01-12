@@ -38,7 +38,7 @@ public class Main {
                 for (Document Document : documentList) System.out.println(Document);
                 break;
             case 2:
-                System.out.println("Tworzenie Dokumentu poprzez nazwę:");
+                System.out.println("Tworzenie Dokumentu poprzez ID:");
                 System.out.println("Wprowadź nazwę dokumentu");
                 name = scanner.nextLine();
                 System.out.println("Wprowadź ilość stron dokumentu");
